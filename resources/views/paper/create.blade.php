@@ -1,4 +1,4 @@
-@extends('layout.master')
+@extends('layouts.app')
 
 @section('content')
     <div class="container pt-4 bg-white">
@@ -25,6 +25,7 @@
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
                     </div>
+                    <a class="btn btn-info" href="{{ route('papers.index') }}">Back</a>
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
             </div>

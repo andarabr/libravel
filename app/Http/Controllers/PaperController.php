@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 
 class PaperController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index(){
         $papers = Paper::all();
         return view("paper.index", ['papers' => $papers]);
@@ -35,7 +40,8 @@ class PaperController extends Controller
 
     public function edit($papid){
         $paper = Paper::where('papid',$papid)->first();
-        return view("paper.edit", ['paper' => $paper]);
+        //return view("paper.edit", ['paper' => $paper]);
+        return view("paper.edit")->with('paper', $paper);
     }
 
     public function update(Request $request, $papid){
@@ -51,6 +57,7 @@ class PaperController extends Controller
     }
 
     public function destroy($papid){
+        //dd($papid);
         $name = Paper::where('papid',$papid)->first();
         Paper::where('papid', $papid)->delete();
         return redirect()->route('papers.index')->with('message', "Paper {$name['title']} has been successfully deleted");

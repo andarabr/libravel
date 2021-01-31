@@ -1,7 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\PaperController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,6 +17,8 @@ use App\Http\Controllers\PaperController;
 */
 
 Route::get('/', [paperController::class, 'index'])->name('papers.index');
+
+Auth::routes();
 
 //--------------------------------------------------------------------------
 
@@ -32,6 +36,12 @@ Route::patch('/papers/{papid}', [paperController::class, 'update'])->name('paper
 
 Route::delete('/papers/{papid}', [paperController::class, 'destroy'])->name('papers.destroy');
 
+//--------------------------------------------------------------------------
 
+Route::get('/users', [userController::class, 'index'])->name('users.index');
+
+Route::get('/users/create', [userController::class, 'create'])->name('users.create');
+
+Route::post('/users/store', [userController::class, 'store'])->name('users.store');
 
 

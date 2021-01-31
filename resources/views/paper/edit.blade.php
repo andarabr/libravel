@@ -1,10 +1,10 @@
-@extends('layout.master')
+@extends('layouts.app')
 
 @section('content')
     <div class="container pt-4 bg-white">
         <div class="row">
             <div class="col-md-12 col-xl-12">
-                <h1>Edit Paper {{$paper->papid}}</h1>
+                <h1>Edit Paper | <b>{{$paper->title}}</b></h1>
                 <form action="{{ route('papers.update', $paper->papid) }}" method="POST">
                     @method('PATCH')
                     @csrf
@@ -26,6 +26,7 @@
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
                     </div>
+                    <a class="btn btn-info" href="{{ url()->previous() }}">Back</a>
                     <button type="submit" class="btn btn-primary">Update</button>
                 </form>
             </div>
